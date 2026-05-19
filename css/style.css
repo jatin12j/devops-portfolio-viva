@@ -12,15 +12,20 @@ html {
 
 body {
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
 /* Colors & Variables */
 :root {
-    --primary-color: #0056b3;
-    --secondary-color: #f4f4f4;
-    --text-color: #333;
+    --primary-color: #4facfe;
+    --bg-color: #0f172a;
+    --secondary-color: #1e293b;
+    --text-color: #f8fafc;
     --white: #fff;
+    --card-bg: #1e293b;
+    --card-hover: #334155;
+    --navbar-bg: rgba(15, 23, 42, 0.85);
 }
 
 /* Typography */
@@ -38,8 +43,9 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: var(--white);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -92,8 +98,37 @@ h1, h2, h3 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: var(--secondary-color);
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     padding: 0 20px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero .highlight {
+    color: #4facfe;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .hero-content h1 {
@@ -119,7 +154,7 @@ h1, h2, h3 {
 }
 
 .btn:hover {
-    background-color: #004494;
+    background-color: #3b82f6;
 }
 
 /* Sections */
@@ -142,15 +177,16 @@ h1, h2, h3 {
 }
 
 .skill-card, .project-card {
-    background: var(--white);
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s, background 0.3s;
 }
 
 .skill-card:hover, .project-card:hover {
     transform: translateY(-10px);
+    background: var(--card-hover);
 }
 
 /* Contact Form */
@@ -165,17 +201,19 @@ h1, h2, h3 {
 .contact-form input, .contact-form textarea {
     width: 100%;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--card-hover);
     border-radius: 5px;
     font-size: 1rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #333;
-    color: var(--white);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 /* Responsive */
@@ -187,7 +225,8 @@ footer {
         position: absolute;
         top: 70px;
         left: 0;
-        background-color: var(--white);
+        background-color: var(--navbar-bg);
+        backdrop-filter: blur(10px);
         text-align: center;
     }
     .nav-links.active {
