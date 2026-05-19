@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Deploying to Apache Server...'
                 // Assuming Jenkins user has sudo permissions to copy to /var/www/html
-                sh 'sudo cp -r * /var/www/html/'
+                sh 'cp -r * /var/www/html/'
                 echo 'Deployment Successful!'
             }
         }
